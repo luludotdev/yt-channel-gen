@@ -26,5 +26,18 @@
   "bugs": {
     "url": "https://github.com/lolPants/yt-channel-gen/issues"
   },
-  "homepage": "https://github.com/lolPants/yt-channel-gen#readme"
+  "homepage": "https://github.com/lolPants/yt-channel-gen#readme",
+  "devDependencies": {
+    "@types/node": "^10.12.24",
+    "@types/node-fetch": "^2.1.6",
+    "prettier": "^1.16.4",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.0.1",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "node-fetch": "^2.3.0"
+  }
 }
