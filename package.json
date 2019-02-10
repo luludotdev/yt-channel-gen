@@ -1,12 +1,14 @@
 {
   "name": "yt-channel-gen",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Get all uploads from a YouTube channel as an Iterable",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
+    "prepublishOnly": "npm run test && npm run build",
     "test": "npm run check && npm run lint",
     "check": "npm run build -- --noEmit",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
