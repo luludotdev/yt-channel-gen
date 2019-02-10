@@ -1,0 +1,30 @@
+{
+  "name": "yt-channel-gen",
+  "version": "0.1.0",
+  "description": "Get all uploads from a YouTube channel as an Iterable",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lolPants/yt-channel-gen.git"
+  },
+  "keywords": [
+    "youtube",
+    "channel",
+    "iterator",
+    "iterable",
+    "generator",
+    "feed"
+  ],
+  "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lolPants/yt-channel-gen/issues"
+  },
+  "homepage": "https://github.com/lolPants/yt-channel-gen#readme"
+}
