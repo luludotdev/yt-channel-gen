@@ -1,5 +1,8 @@
-import { createFetch } from './fetch'
-const fetch = createFetch('https://www.googleapis.com/youtube/v3')
+import { Axios } from 'axios'
+
+const axios = new Axios({
+  baseURL: 'https://www.googleapis.com/youtube/v3',
+})
 
 export const createGenerator = (apiKey: string) => {
   /**
@@ -9,9 +12,8 @@ export const createGenerator = (apiKey: string) => {
     channelID: string
   ) => Promise<string> = async channelID => {
     const url = `/channels?key=${apiKey}&id=${channelID}&part=contentDetails`
-    const resp = await fetch(url)
+    const { data: body } = await axios.get(url)
 
-    const body = await resp.json()
     return body.items[0].contentDetails.relatedPlaylists.uploads
   }
 
@@ -21,7 +23,7 @@ export const createGenerator = (apiKey: string) => {
   const getVideoIDs: (
     channelID: string,
     perPage?: number
-  ) => AsyncIterableIterator<string> = async function* getVideos(
+  ) => AsyncIterableIterator<string> = async function* (
     channelID,
     perPage = 50
   ) {
@@ -31,11 +33,10 @@ export const createGenerator = (apiKey: string) => {
     const url = `/playlistItems?key=${apiKey}&playlistId=${uploadsPlaylist}&part=contentDetails&maxResults=${perPage}`
 
     while (true) {
-      const resp = await fetch(
+      const { data: body } = await axios.get(
         `${url}${pageToken ? `&pageToken=${pageToken}` : ''}`
       )
 
-      const body = await resp.json()
       pageToken = body.nextPageToken
 
       for (const item of body.items) {
