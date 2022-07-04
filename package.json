@@ -1,29 +1,36 @@
 {
   "name": "yt-channel-gen",
-  "version": "0.2.0",
-  "description": "Get all uploads from a YouTube channel as an Iterable",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "directories": {
-    "lib": "lib"
+  "version": "0.3.0",
+  "packageManager": "yarn@3.2.1",
+  "type": "module",
+  "module": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    }
   },
+  "sideEffects": false,
   "files": [
     "lib/**/*"
   ],
   "scripts": {
-    "prepublishOnly": "yarn run test && yarn run build",
+    "prepack": "yarn run build",
+    "prepublish": "yarn run test",
     "test": "yarn run check && yarn run lint",
-    "check": "yarn run build --noEmit",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "prebuild": "rimraf lib",
-    "build": "tsc",
-    "build:dev": "yarn run build --sourceMap",
-    "watch": "tsc --watch",
-    "dev": "yarn run watch --sourceMap"
+    "check": "yarn run compile --noEmit",
+    "lint": "xo ./src",
+    "clean": "rimraf lib",
+    "compile": "tsc",
+    "build": "yarn run clean && yarn run compile",
+    "dev": "yarn run clean && yarn run compile --watch"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lolPants/yt-channel-gen.git"
+  "repository": "git@github.com:lolPants/yt-channel-gen.git",
+  "author": "Jack Baron <jackmbaron@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16"
   },
   "keywords": [
     "youtube",
@@ -33,23 +40,13 @@
     "generator",
     "feed"
   ],
-  "author": "Jack Baron <jackmbaron@gmail.com> (https://www.jackbaron.com)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lolPants/yt-channel-gen/issues"
-  },
-  "homepage": "https://github.com/lolPants/yt-channel-gen#readme",
   "devDependencies": {
-    "@types/node": "^12.0.8",
-    "@types/node-fetch": "^2.3.7",
-    "prettier": "^1.18.2",
-    "rimraf": "^2.6.3",
-    "tslint": "^5.17.0",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-plugin-prettier": "^2.0.1",
-    "typescript": "^3.5.2"
+    "@types/node": "^18.0.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.4",
+    "xo": "^0.50.0"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "axios": "^0.27.2"
   }
 }
